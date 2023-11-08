@@ -25,10 +25,10 @@ class Predictor(BasePredictor):
         self.models = {
             'image_captioning': blip_decoder(pretrained='checkpoints/model*_base_caption.pth',
                                              image_size=384, vit='base'),
-            'visual_question_answering': blip_vqa(pretrained='checkpoints/model*_vqa.pth',
-                                                  image_size=480, vit='base'),
-            'image_text_matching': blip_itm(pretrained='checkpoints/model_base_retrieval_coco.pth',
-                                            image_size=384, vit='base')
+            # 'visual_question_answering': blip_vqa(pretrained='checkpoints/model*_vqa.pth',
+            #                                       image_size=480, vit='base'),
+            # 'image_text_matching': blip_itm(pretrained='checkpoints/model_base_retrieval_coco.pth',
+            #                                 image_size=384, vit='base')
         }
 
     def predict(self, 
