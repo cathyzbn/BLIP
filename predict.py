@@ -32,10 +32,10 @@ class Predictor(BasePredictor):
         }
 
     def predict(self, 
-                image: Path = Input(help="input image"), 
-                task: str = Input(default='image_captioning',options=['image_captioning', 'visual_question_answering', 'image_text_matching'], help="Choose a task."), 
-                question: str = Input(default=None, help="Type question for the input image for visual question answering task."), 
-                caption: str = Input(default=None, help="Type caption for the input image for image text matching task.")
+                image: Path = Input(description="input image"), 
+                task: str = Input(default='image_captioning',options=['image_captioning', 'visual_question_answering', 'image_text_matching'], description="Choose a task."), 
+                question: str = Input(default=None, description="Type question for the input image for visual question answering task."), 
+                caption: str = Input(default=None, description="Type caption for the input image for image text matching task.")
                ):
         if task == 'visual_question_answering':
             assert question is not None, 'Please type a question for visual question answering task.'
