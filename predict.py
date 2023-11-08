@@ -11,14 +11,14 @@ from PIL import Image
 import torch
 from torchvision import transforms
 from torchvision.transforms.functional import InterpolationMode
-import cog
+from cog import BasePredictor, Input, Path
 
 from models.blip import blip_decoder
 from models.blip_vqa import blip_vqa
 from models.blip_itm import blip_itm
 
 
-class Predictor(cog.BasePredictor):
+class Predictor(BasePredictor):
     def setup(self):
         self.device = "cuda:0"
 
