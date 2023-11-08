@@ -33,7 +33,7 @@ class Predictor(BasePredictor):
 
     def predict(self, 
                 image: Path = Input(description="input image"), 
-                task: str = Input(default='image_captioning',options=['image_captioning', 'visual_question_answering', 'image_text_matching'], description="Choose a task."), 
+                task: str = Input(default='image_captioning', description="Choose a task."), 
                 question: str = Input(default=None, description="Type question for the input image for visual question answering task."), 
                 caption: str = Input(default=None, description="Type caption for the input image for image text matching task.")
                ):
