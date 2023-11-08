@@ -18,7 +18,7 @@ from models.blip_vqa import blip_vqa
 from models.blip_itm import blip_itm
 
 
-class Predictor(cog.Predictor):
+class Predictor(cog.BasePredictor):
     def setup(self):
         self.device = "cuda:0"
 
@@ -31,31 +31,12 @@ class Predictor(cog.Predictor):
                                             image_size=384, vit='base')
         }
 
-    @cog.input(
-        "image",
-        type=Path,
-        help="input image",
-    )
-    @cog.input(
-        "task",
-        type=str,
-        default='image_captioning',
-        options=['image_captioning', 'visual_question_answering', 'image_text_matching'],
-        help="Choose a task.",
-    )
-    @cog.input(
-        "question",
-        type=str,
-        default=None,
-        help="Type question for the input image for visual question answering task.",
-    )
-    @cog.input(
-        "caption",
-        type=str,
-        default=None,
-        help="Type caption for the input image for image text matching task.",
-    )
-    def predict(self, image, task, question, caption):
+    def predict(self, 
+                image: Path = Input(help="input image"), 
+                task: str = Input(default='image_captioning',options=['image_captioning', 'visual_question_answering', 'image_text_matching'], help="Choose a task."), 
+                question: str = Input(default=None, help="Type question for the input image for visual question answering task."), 
+                caption: str = Input(default=None, help="Type caption for the input image for image text matching task.")
+               ):
         if task == 'visual_question_answering':
             assert question is not None, 'Please type a question for visual question answering task.'
         if task == 'image_text_matching':
